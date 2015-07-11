@@ -1,8 +1,8 @@
 %global pypi_name toml
 
 Name:           python-%{pypi_name}
-Version:        0.9.0
-Release:        2%{?dist}
+Version:        0.9.1
+Release:        1%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -76,6 +76,9 @@ PYTHONPATH=%{buildroot}%{python2_sitelib} %{__python2} -c "import toml"
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
 
 %changelog
+* Sat Jul 11 2015 Fedora Release Monitoring <release-monitoring@fedoraproject.org> - 0.9.1-1
+- Update to 0.9.1 (#1242131)
+
 * Sun Jun 28 2015 Julien Enselme <jujens@jujens.eu> - 0.9.0-2
 - Update description to explain what toml is
 - Try to import the package in %%check
