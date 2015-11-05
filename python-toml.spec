@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -91,6 +91,9 @@ toml-test $(pwd)/toml_test.py
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
 
 %changelog
+* Thu Nov 5 2015 Julien Enselme <jujens@jujens.eu> - 0.9.1-3
+- Rebuilt for python 3.5
+
 * Sat Aug 8 2015 Julien Enselme <jujens@jujens.eu> - 0.9.1-2
 - Enable tests suite
 - Build python3 and python2 in the same directory
