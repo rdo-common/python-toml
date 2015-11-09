@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -40,7 +40,7 @@ toml file.
 %package -n     python3-%{pypi_name}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 BuildRequires:  python3-devel
-%{?python_provide:%python_provide python2-%{pypi_name}}
+%{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
 TOML aims to be a minimal configuration file format that's easy to read due to
@@ -91,6 +91,9 @@ toml-test $(pwd)/toml_test.py
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
 
 %changelog
+* Mon Nov 9 2015 Julien Enselme <jujens@jujens.eu> - 0.9.1-4
+- Correct %%python_provides for python3
+
 * Thu Nov 5 2015 Julien Enselme <jujens@jujens.eu> - 0.9.1-3
 - Rebuilt for python 3.5
 
