@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -91,6 +91,9 @@ toml-test $(pwd)/toml_test.py
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.1-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Wed Nov 11 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.1-5
 - Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
 
