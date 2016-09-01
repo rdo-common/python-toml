@@ -1,14 +1,19 @@
 %global pypi_name toml
 %global with_test 0
+%global desc TOML aims to be a minimal configuration file format that's easy to read due to \
+obvious semantics. TOML is designed to map unambiguously to a hash table. TOML \
+should be easy to parse into data structures in a wide variety of languages. \
+This package loads toml file into python dictionary and dump dictionary into \
+toml file.
 
 Name:           python-%{pypi_name}
-Version:        0.9.1
-Release:        7%{?dist}
+Version:        0.9.2
+Release:        1%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{pypi_name}
-Source0:        https://pypi.python.org/packages/source/t/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/5c/b2/8a18ced00a43f2cc5261f9ac9f1c94621251400a80db1567177719355177/toml-%{version}.tar.gz
 # Tests files are not provided in pypi release as they require toml-test to run
 Source1:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test.py
 Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test3.py
@@ -18,37 +23,24 @@ BuildRequires:  python2-devel
 BuildRequires:  golang-github-BurntSushi-toml-test
 
 %description
-TOML aims to be a minimal configuration file format that's easy to read due to
-obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
-should be easy to parse into data structures in a wide variety of languages.
-This package loads toml file into python dictionary and dump dictionary into
-toml file.
+%desc
 
 
 %package -n     python2-%{pypi_name}
-Summary:        Python Library for Tom's Obvious, Minimal Language
+Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 %description -n python2-%{pypi_name}
-TOML aims to be a minimal configuration file format that's easy to read due to
-obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
-should be easy to parse into data structures in a wide variety of languages.
-This package loads toml file into python dictionary and dump dictionary into
-toml file.
+%desc
 
 
 %package -n     python3-%{pypi_name}
-Summary:        Python Library for Tom's Obvious, Minimal Language
+Summary:        %{summary}
 BuildRequires:  python3-devel
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
-TOML aims to be a minimal configuration file format that's easy to read due to
-obvious semantics. TOML is designed to map unambiguously to a hash table. TOML
-should be easy to parse into data structures in a wide variety of languages.
-This package loads toml file into python dictionary and dump dictionary into
-toml file.
-
+%desc
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
@@ -90,7 +82,12 @@ toml-test $(pwd)/toml_test.py
 %{python3_sitelib}/%{pypi_name}.py
 %{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
 
+
 %changelog
+* Thu Sep 01 2016 Julien Enselme <jujens@jujens.eu> - 0.9.2-1
+- Update to 0.9.2
+- Improve spec with %%summary and %%desc macros
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.1-7
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
