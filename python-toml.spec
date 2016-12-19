@@ -8,7 +8,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.9.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -84,6 +84,9 @@ toml-test $(pwd)/toml_test.py
 
 
 %changelog
+* Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 0.9.2-2
+- Rebuild for Python 3.6
+
 * Thu Sep 01 2016 Julien Enselme <jujens@jujens.eu> - 0.9.2-1
 - Update to 0.9.2
 - Improve spec with %%summary and %%desc macros
