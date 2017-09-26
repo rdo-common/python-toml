@@ -7,13 +7,13 @@ This package loads toml file into python dictionary and dump dictionary into \
 toml file.
 
 Name:           python-%{pypi_name}
-Version:        0.9.2
-Release:        4%{?dist}
+Version:        0.9.3
+Release:        1%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{pypi_name}
-Source0:        https://pypi.python.org/packages/5c/b2/8a18ced00a43f2cc5261f9ac9f1c94621251400a80db1567177719355177/toml-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/b1/1c/93d2dfc8c922b0ef0bb19d9734a404fba8d00d31894461dae3dc6d5f9e1a/toml-0.9.3.0.tar.gz
 # Tests files are not provided in pypi release as they require toml-test to run
 Source1:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test.py
 Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test3.py
@@ -84,6 +84,9 @@ toml-test $(pwd)/toml_test.py
 
 
 %changelog
+* Tue Sep 26 2017 Julien Enselme <jujens@jujens.eu> - 0.9.3-1
+- Update to 0.9.3
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
