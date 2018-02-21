@@ -6,9 +6,13 @@ should be easy to parse into data structures in a wide variety of languages. \
 This package loads toml file into python dictionary and dump dictionary into \
 toml file.
 
+%if 0%{?fedora}
+%global with_test 1
+%endif
+
 Name:           python-%{pypi_name}
 Version:        0.9.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -19,12 +23,15 @@ Source1:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08f
 Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test3.py
 
 BuildArch:      noarch
+
 BuildRequires:  python2-devel
+BuildRequires:  python%{python3_pkgversion}-devel
+%if 0%{with_test}
 BuildRequires:  golang-github-BurntSushi-toml-test
+%endif
 
 %description
 %desc
-
 
 %package -n     python2-%{pypi_name}
 Summary:        %{summary}
@@ -33,20 +40,21 @@ Summary:        %{summary}
 %description -n python2-%{pypi_name}
 %desc
 
-
-%package -n     python3-%{pypi_name}
+%package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
-BuildRequires:  python3-devel
-%{?python_provide:%python_provide python3-%{pypi_name}}
+BuildRequires:  python%{python3_pkgversion}-devel
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{pypi_name}}
 
-%description -n python3-%{pypi_name}
+%description -n python%{python3_pkgversion}-%{pypi_name}
 %desc
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
+%if 0%{with_test}
 # Copy test files and make them executable so toml-test can work
 cp -a %{SOURCE1} %{SOURCE2} .
 chmod +x toml_test.py toml_test3.py
+%endif
 
 
 %build
@@ -64,8 +72,8 @@ chmod +x toml_test.py toml_test3.py
 # link the the tests files
 %if 0%{with_test}
 ln -s /usr/share/toml-test/tests tests
-toml-test $(pwd)/toml_test3.py
 toml-test $(pwd)/toml_test.py
+toml-test $(pwd)/toml_test3.py
 %endif
 
 
@@ -75,7 +83,7 @@ toml-test $(pwd)/toml_test.py
 %{python2_sitelib}/%{pypi_name}-%{version}-py%{python2_version}.egg-info
 %{python2_sitelib}/%{pypi_name}.py*
 
-%files -n python3-%{pypi_name}
+%files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
@@ -84,6 +92,9 @@ toml-test $(pwd)/toml_test.py
 
 
 %changelog
+* Wed Feb 21 2018 Sayan Chowdhury <sayanchowdhury@fedoraproject.org> - 0.9.4-3
+- Make changes to build the package for EPEL
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
