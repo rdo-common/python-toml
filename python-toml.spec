@@ -12,7 +12,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.9.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -92,6 +92,9 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 0.9.4-4
+- Rebuilt for Python 3.7
+
 * Wed Feb 21 2018 Sayan Chowdhury <sayanchowdhury@fedoraproject.org> - 0.9.4-3
 - Make changes to build the package for EPEL
 
