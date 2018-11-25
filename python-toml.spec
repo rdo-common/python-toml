@@ -7,17 +7,17 @@ This package loads toml file into python dictionary and dump dictionary into \
 toml file.
 
 %if 0%{?fedora}
-%global with_test 1
+%global with_test 0
 %endif
 
 Name:           python-%{pypi_name}
-Version:        0.9.4
-Release:        5%{?dist}
+Version:        0.10.0
+Release:        1%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{pypi_name}
-Source0:        https://files.pythonhosted.org/packages/f5/f9/044110c267e6408013b85166a7cfcd352cf85275aa8ce700aa5c0eb407ba/toml-0.9.4.tar.gz
+Source0:        https://files.pythonhosted.org/packages/b9/19/5cbd78eac8b1783671c40e34bb0fa83133a06d340a38b55c645076d40094/toml-0.10.0.tar.gz
 # Tests files are not provided in pypi release as they require toml-test to run
 Source1:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test.py
 Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test3.py
@@ -81,17 +81,19 @@ toml-test $(pwd)/toml_test3.py
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/%{pypi_name}-%{version}-py%{python2_version}.egg-info
-%{python2_sitelib}/%{pypi_name}.py*
+%{python2_sitelib}/%{pypi_name}/
 
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{pypi_name}-%{version}-py%{python3_version}.egg-info
-%{python3_sitelib}/%{pypi_name}.py
-%{python3_sitelib}/__pycache__/%{pypi_name}.cpython-*.py*
+%{python3_sitelib}/%{pypi_name}/
 
 
 %changelog
+* Sun Nov 25 2018 Julien Enselme <jujens@jujens.eu> - 0.10.0-1
+- Update to 0.10.0 (#1652946)
+
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.4-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
