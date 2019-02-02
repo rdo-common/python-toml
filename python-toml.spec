@@ -12,7 +12,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -91,6 +91,9 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Nov 25 2018 Julien Enselme <jujens@jujens.eu> - 0.10.0-1
 - Update to 0.10.0 (#1652946)
 
