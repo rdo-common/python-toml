@@ -12,7 +12,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.10.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -24,20 +24,12 @@ Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08f
 
 BuildArch:      noarch
 
-BuildRequires:  python2-devel
 BuildRequires:  python%{python3_pkgversion}-devel
 %if 0%{with_test}
 BuildRequires:  golang-github-BurntSushi-toml-test
 %endif
 
 %description
-%desc
-
-%package -n     python2-%{pypi_name}
-Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
-
-%description -n python2-%{pypi_name}
 %desc
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
@@ -58,12 +50,10 @@ chmod +x toml_test.py toml_test3.py
 
 
 %build
-%py2_build
 %py3_build
 
 
 %install
-%py2_install
 %py3_install
 
 
@@ -77,12 +67,6 @@ toml-test $(pwd)/toml_test3.py
 %endif
 
 
-%files -n python2-%{pypi_name}
-%license LICENSE
-%doc README.rst
-%{python2_sitelib}/%{pypi_name}-%{version}-py%{python2_version}.egg-info
-%{python2_sitelib}/%{pypi_name}/
-
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
 %doc README.rst
@@ -91,6 +75,10 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Mon Feb 11 2019 Miro Hrončok <mhroncok@redhat.com> - 0.10.0-3
+- Subpackage python2-toml has been removed
+  See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
