@@ -12,7 +12,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.10.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -75,6 +75,9 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Mon Feb 11 2019 Miro Hrončok <mhroncok@redhat.com> - 0.10.0-3
 - Subpackage python2-toml has been removed
   See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
