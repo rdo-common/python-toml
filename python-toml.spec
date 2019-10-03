@@ -12,7 +12,7 @@ toml file.
 
 Name:           python-%{pypi_name}
 Version:        0.10.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
@@ -75,6 +75,9 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.10.0-6
+- Rebuilt for Python 3.8.0rc1 (#1748018)
+
 * Fri Aug 16 2019 Miro Hrončok <mhroncok@redhat.com> - 0.10.0-5
 - Rebuilt for Python 3.8
 
