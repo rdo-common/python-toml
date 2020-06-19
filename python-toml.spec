@@ -1,32 +1,29 @@
 %global pypi_name toml
-%global with_test 0
 %global desc TOML aims to be a minimal configuration file format that's easy to read due to \
 obvious semantics. TOML is designed to map unambiguously to a hash table. TOML \
 should be easy to parse into data structures in a wide variety of languages. \
 This package loads toml file into python dictionary and dump dictionary into \
 toml file.
 
-%if 0%{?fedora}
-%global with_test 0
-%endif
-
 Name:           python-%{pypi_name}
-Version:        0.10.0
-Release:        8%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        Python Library for Tom's Obvious, Minimal Language
 
 License:        MIT
 URL:            https://pypi.python.org/pypi/%{pypi_name}
-Source0:        https://files.pythonhosted.org/packages/b9/19/5cbd78eac8b1783671c40e34bb0fa83133a06d340a38b55c645076d40094/toml-0.10.0.tar.gz
-# Tests files are not provided in pypi release as they require toml-test to run
-Source1:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test.py
-Source2:        https://raw.githubusercontent.com/uiri/toml/da6d593944d08569e08ff32f2bb2e73da91d3578/toml_test3.py
+Source0:        %{pypi_source}
 
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
-%if 0%{with_test}
-BuildRequires:  golang-github-BurntSushi-toml-test
+BuildRequires:  python%{python3_pkgversion}-setuptools
+
+%bcond_without tests
+%if %{with tests}
+BuildRequires:  python%{python3_pkgversion}-numpy
+BuildRequires:  python%{python3_pkgversion}-pytest
+BuildRequires:  /usr/bin/toml-test
 %endif
 
 %description
@@ -42,11 +39,6 @@ BuildRequires:  python%{python3_pkgversion}-devel
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
-%if 0%{with_test}
-# Copy test files and make them executable so toml-test can work
-cp -a %{SOURCE1} %{SOURCE2} .
-chmod +x toml_test.py toml_test3.py
-%endif
 
 
 %build
@@ -57,13 +49,13 @@ chmod +x toml_test.py toml_test3.py
 %py3_install
 
 
+%if %{with tests}
 %check
-# Using the language independent toml-test suite to launch tests
-# link the the tests files
-%if 0%{with_test}
-ln -s /usr/share/toml-test/tests tests
-toml-test $(pwd)/toml_test.py
-toml-test $(pwd)/toml_test3.py
+ln -s /usr/share/toml-test/ .  # python tests require test cases here
+%pytest
+# Also using the language independent toml-test suite to launch tests
+ln -s /usr/share/toml-test/tests/* tests/  # toml-test requires them here
+toml-test $(pwd)/tests/decoding_test3.sh
 %endif
 
 
@@ -75,6 +67,9 @@ toml-test $(pwd)/toml_test3.py
 
 
 %changelog
+* Fri Jun 19 2020 Miro Hrončok <mhroncok@redhat.com> - 0.10.1-1
+- Update to 0.10.1 (#1835567)
+
 * Sat May 23 2020 Miro Hrončok <mhroncok@redhat.com> - 0.10.0-8
 - Rebuilt for Python 3.9
 
