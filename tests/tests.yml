@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  roles:
+  - role: standard-test-basic
+    tags:
+    - classic
+    repositories:
+    - repo: "https://src.fedoraproject.org/rpms/pyproject-rpm-macros.git"
+      dest: "pyproject-rpm-macros"
+    tests:
+    - pyproject_pytest:
+        dir: pyproject-rpm-macros/tests
+        run: ./mocktest.sh python-pytest
+    - pyproject_entrypoints:
+        dir: pyproject-rpm-macros/tests
+        run: ./mocktest.sh python-entrypoints
+    - pyproject_pluggy:
+        dir: pyproject-rpm-macros/tests
+        run: ./mocktest.sh python-pluggy
+    - pyproject_clikit:
+        dir: pyproject-rpm-macros/tests
+        run: ./mocktest.sh python-clikit
+    required_packages:
+    - mock
+    - rpmdevtools
+    - rpm-build
