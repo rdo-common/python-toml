@@ -19,7 +19,7 @@ BuildArch:      noarch
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 
-%bcond_without tests
+%bcond_with tests
 %if %{with tests}
 BuildRequires:  python%{python3_pkgversion}-numpy
 BuildRequires:  python%{python3_pkgversion}-pytest
